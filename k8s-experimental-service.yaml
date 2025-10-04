@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: song-microservice-deployment
+  namespace: microservice-ns
   labels:
     app: song-microservice
 spec:
@@ -46,6 +47,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: resource-microservice-deployment
+  namespace: microservice-ns
   labels:
     app: resource-microservice
 spec:
