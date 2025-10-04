@@ -4,8 +4,8 @@ target/
 !**/build/
 
 ### IntelliJ IDEA ###
-.idea
-.gradle
+.idea/**/*.*
+.gradle/**/*.*
 gradle
 *.iws
 *.iml
