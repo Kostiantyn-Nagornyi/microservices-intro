@@ -1,8 +1,5 @@
 # K8s basics
 
-*Based on the project of the Microservices Intro educational program: 
-https://learn.epam.com/catalog/detailsPage?id=550944b4-72c9-4c2d-93ef-545b6e569f61*
-
 ### Pre-requisites:
 0. Install [Rancher Desktop](https://docs.rancherdesktop.io/).
 1. Build executable jar-files for all projects (gradle-modules):
@@ -36,31 +33,46 @@ that without **local image-registry** have to be pushed into the remote Docker H
 
 ![screenshot1.jpg](screenshot/screenshot1.jpg)
 
-4. Related to K8s tasks could be found [here](https://git.epam.com/epm-cdp/global-java-foundation-program/java-courses/-/blob/main/kubernetes-for-devs/1-k8s-overview/task/README.md)  
-  4a. [Sub-task 1: Install k8s](https://git.epam.com/epm-cdp/global-java-foundation-program/java-courses/-/blob/main/kubernetes-for-devs/1-k8s-overview/task/README.md#sub-task-1-install-k8s).  
+4. **K8s tasks** 
+  4a. **Sub-task 1: Install k8s.**  
    The completion of this task is obvious.  
-  4b. [Sub-task 2: Deploy containers in k8s](https://git.epam.com/epm-cdp/global-java-foundation-program/java-courses/-/blob/main/kubernetes-for-devs/1-k8s-overview/task/README.md#sub-task-2-deploy-containers-in-k8s).  
+
+  4b. **Sub-task 2: Deploy containers in k8s.  
    The required k8s component deployment configuration located in the ```k8s/simple/deployment``` folder.  
    It contains following artefacts:
    - configuration of **Namespace**s for databases and microservices.  
-   - database **Deployment** configuration as normal pod + respective **ConfigMap** and **Secret**,
-   - microservice **Deployment** configuration as pod + respective **ConfigMap** and **Secret**. 
+   - database **Deployment** configuration as a normal Pod + respective **ConfigMap** and **Secret**,
+   - microservice **Deployment** configuration as a Pod + respective **ConfigMap** and **Secret**. 
    Here **ConfigMap** and **Secret** are created per a **namespace**.
 The deployment results are represented on the screenshots below:
 ![screenshot2](screenshot/screenshot2.jpg)  
 ![screenshot3](screenshot/screenshot3.jpg).
 
-  4c. [Sub-task 3: Persistent volumes](https://git.epam.com/epm-cdp/global-java-foundation-program/java-courses/-/blob/main/kubernetes-for-devs/1-k8s-overview/task/README.md#sub-task-3-persistent-volumes)  
+  4c. **Sub-task 3: Persistent volumes**.
   The required k8s component deployment configuration located in the ```k8s/persistantvolume``` folder.  
   It contains following artefacts:
   - configuration of **Namespace**s for databases and microservices.
-  - database **Deployment** configuration as normal pod + respective **ConfigMap** and **Secret**,
-  - microservice **Deployment** configuration as pod + respective **ConfigMap** and **Secret**,
+  - database **Deployment** configuration as a normal Pod + respective **ConfigMap** and **Secret**,
+  - microservice **Deployment** configuration as a Pod + respective **ConfigMap** and **Secret**,
   - configuration for local (worker-node's) **PersistentVolume** that has to store files for **song-microservice**  
   independently of its pod, that could fail/shutdown and restarted by its replica-set.
   Here **ConfigMap** and **Secret** are created per a **namespace**.
 The deployment results are represented on the screenshots below:
 ![screenshot2](screenshot/screenshot2.jpg)  
 ![screenshot4](screenshot/screenshot4.jpg).
-5. 
+
+  4d. **Sub-task 4: Stateful Sets**.  
+  The required k8s component deployment configuration located in the ```k8s/statefulset``` folder.  
+  It contains following artefacts:
+  - configuration of **Namespace**s for databases and microservices.
+  - database **Deployment** configuration as a StatefulSet + respective **ConfigMap** and **Secret**,
+  - microservice **Deployment** configuration as a Pod + respective **ConfigMap** and **Secret**,
+  - configuration for **NodePort** services attached to respective microservices.
+    Here **ConfigMap** and **Secret** are created per a **namespace**.
+    The deployment results are represented on the screenshots below:
+    ![screenshot5_1](screenshot/screenshot5_1.jpg)  
+    ![screenshot5_2](screenshot/screenshot5_2.jpg)  
+    ![screenshot6](screenshot/screenshot6.jpg).
+
+### End Of Description
 
