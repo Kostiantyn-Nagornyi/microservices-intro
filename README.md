@@ -69,10 +69,16 @@ The deployment results are represented on the screenshots below:
   - microservice **Deployment** configuration as a Pod + respective **ConfigMap** and **Secret**,
   - configuration for **NodePort** services attached to respective microservices.
     Here **ConfigMap** and **Secret** are created per a **namespace**.
-    The deployment results are represented on the screenshots below:
-    ![screenshot5_1](screenshot/screenshot5_1.jpg)  
-    ![screenshot5_2](screenshot/screenshot5_2.jpg)  
-    ![screenshot6](screenshot/screenshot6.jpg).
+The deployment results are represented on the screenshots below:
+![screenshot5_1](screenshot/screenshot5_1.jpg)  
+![screenshot5_2](screenshot/screenshot5_2.jpg)  
+![screenshot6](screenshot/screenshot6.jpg)  
+
+Screenshots below demonstrate that deployed microservice configuration is functional:
+![screenshot7](screenshot/screenshot7.jpg)  
+![screenshot8](screenshot/screenshot8.jpg)  
+![screenshot9](screenshot/screenshot9.jpg)  
+![screenshot10](screenshot/screenshot10.jpg)  
 
 ### End Of Description
 
