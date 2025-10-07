@@ -57,9 +57,19 @@ The deployment results are represented on the screenshots below:
   - configuration for local (worker-node's) **PersistentVolume** that has to store files for **song-microservice**  
   independently of its pod, that could fail/shutdown and restarted by its replica-set.
   Here **ConfigMap** and **Secret** are created per a **namespace**.
-The deployment results are represented on the screenshots below:
+The deployment results are represented on screenshots below:
 ![screenshot2](screenshot/screenshot2.jpg)  
-![screenshot4](screenshot/screenshot4.jpg).
+![screenshot4](screenshot/screenshot4.jpg).  
+
+PersistentVolume contains ```/mnt/persistentVolume/microservice/song``` directories  
+that contain file **testPersistedFile.txt**. The file contains a string  
+**Hello from Kubernetes! This is a dedicated storage for song-microservice!**  
+A Screenshot below demonstrates PersistentVolume contents.
+*NB: in order to connect to the worker-node it is required to use ```rdctl shell``` command in the terminal*.  
+![screenshot11](screenshot/screenshot11.jpg)  
+
+In its turn, a screenshot below demonstrates the same file content on one of **song-microservice** Pods.
+![screenshot12](screenshot/screenshot12.jpg).  
 
   4d. **Sub-task 4: Stateful Sets**.  
   The required k8s component deployment configuration located in the ```k8s/statefulset``` folder.  
