@@ -35,15 +35,32 @@ This is a crucial because kubernetes requires docker-images for all components, 
 that without **local image-registry** have to be pushed into the remote Docker Hub or another image-registry system, e.g. AWS ERC.
 
 ![screenshot1.jpg](screenshot/screenshot1.jpg)
+
 4. Related to K8s tasks could be found [here](https://git.epam.com/epm-cdp/global-java-foundation-program/java-courses/-/blob/main/kubernetes-for-devs/1-k8s-overview/task/README.md)  
-  4a.[Sub-task 1: Install k8s](https://git.epam.com/epm-cdp/global-java-foundation-program/java-courses/-/blob/main/kubernetes-for-devs/1-k8s-overview/task/README.md#sub-task-1-install-k8s).  
+  4a. [Sub-task 1: Install k8s](https://git.epam.com/epm-cdp/global-java-foundation-program/java-courses/-/blob/main/kubernetes-for-devs/1-k8s-overview/task/README.md#sub-task-1-install-k8s).  
    The completion of this task is obvious.  
   4b. [Sub-task 2: Deploy containers in k8s](https://git.epam.com/epm-cdp/global-java-foundation-program/java-courses/-/blob/main/kubernetes-for-devs/1-k8s-overview/task/README.md#sub-task-2-deploy-containers-in-k8s).  
    The required k8s component deployment configuration located in the ```k8s/simple/deployment``` folder.  
-   It contains **Namespace** configuration, database **Deployment** configuration as normal pod + respective **ConfigMap** and **Secret**,
-   microservice **Deployment** configuration as pod respective **ConfigMap** and **Secret**. 
+   It contains following artefacts:
+   - configuration of **Namespace**s for databases and microservices.  
+   - database **Deployment** configuration as normal pod + respective **ConfigMap** and **Secret**,
+   - microservice **Deployment** configuration as pod + respective **ConfigMap** and **Secret**. 
    Here **ConfigMap** and **Secret** are created per a **namespace**.
-The deployment result is represented on the screenshot below
-![screenshot2](screenshot/screenshot2.jpg).
+The deployment results are represented on the screenshots below:
+![screenshot2](screenshot/screenshot2.jpg)  
+![screenshot3](screenshot/screenshot3.jpg).
+
+  4c. [Sub-task 3: Persistent volumes](https://git.epam.com/epm-cdp/global-java-foundation-program/java-courses/-/blob/main/kubernetes-for-devs/1-k8s-overview/task/README.md#sub-task-3-persistent-volumes)  
+  The required k8s component deployment configuration located in the ```k8s/persistantvolume``` folder.  
+  It contains following artefacts:
+  - configuration of **Namespace**s for databases and microservices.
+  - database **Deployment** configuration as normal pod + respective **ConfigMap** and **Secret**,
+  - microservice **Deployment** configuration as pod + respective **ConfigMap** and **Secret**,
+  - configuration for local (worker-node's) **PersistentVolume** that has to store files for **song-microservice**  
+  independently of its pod, that could fail/shutdown and restarted by its replica-set.
+  Here **ConfigMap** and **Secret** are created per a **namespace**.
+The deployment results are represented on the screenshots below:
+![screenshot2](screenshot/screenshot2.jpg)  
+![screenshot4](screenshot/screenshot4.jpg).
 5. 
 
