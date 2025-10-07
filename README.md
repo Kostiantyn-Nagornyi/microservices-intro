@@ -35,8 +35,8 @@ This is a crucial because kubernetes requires docker-images for all components, 
 that without **local image-registry** have to be pushed into the remote Docker Hub or another image-registry system, e.g. AWS ERC.
 
 ![screenshot1.jpg](screenshot/screenshot1.jpg)
-4. Related to K8s tasks could be found [here](https://git.epam.com/epm-cdp/global-java-foundation-program/java-courses/-/blob/main/kubernetes-for-devs/1-k8s-overview/task/README.md)
-  4a.[Sub-task 1: Install k8s](https://git.epam.com/epm-cdp/global-java-foundation-program/java-courses/-/blob/main/kubernetes-for-devs/1-k8s-overview/task/README.md#sub-task-1-install-k8s).
+4. Related to K8s tasks could be found [here](https://git.epam.com/epm-cdp/global-java-foundation-program/java-courses/-/blob/main/kubernetes-for-devs/1-k8s-overview/task/README.md)  
+  4a.[Sub-task 1: Install k8s](https://git.epam.com/epm-cdp/global-java-foundation-program/java-courses/-/blob/main/kubernetes-for-devs/1-k8s-overview/task/README.md#sub-task-1-install-k8s).  
    The completion of this task is obvious.  
   4b. [Sub-task 2: Deploy containers in k8s](https://git.epam.com/epm-cdp/global-java-foundation-program/java-courses/-/blob/main/kubernetes-for-devs/1-k8s-overview/task/README.md#sub-task-2-deploy-containers-in-k8s).  
    The required k8s component deployment configuration located in the ```k8s/simple/deployment``` folder.  
