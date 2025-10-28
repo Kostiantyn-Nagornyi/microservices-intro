@@ -1,0 +1,48 @@
+services:
+  songs-db:
+    image: postgres:18
+    volumes:
+      - db-data:/var/lib/postgresql
+    ports:
+      - 5432:5432
+    env_file:
+      - .env
+    restart: always
+
+  resources-db:
+    image: postgres:18
+    volumes:
+      - db-data:/var/lib/postgresql
+    ports:
+      - 5433:5432
+    env_file:
+      - .env
+    restart: always
+
+  songs-ms:
+    build:
+      context: songs-service
+    container_name: SongsMicroService-module-2
+    ports:
+      - 8081:8081
+    restart: always
+    environment:
+      SONGS_DB_URL: songs-db
+    depends_on:
+      - songs-db
+
+  resources-ms:
+    build:
+      context: resources-service
+    container_name: ResourcesMicroService-module-2
+    ports:
+      - 8080:8080
+    restart: always
+    environment:
+      RESOURCES_DB_URL: resources-db
+    depends_on:
+      - resources-db
+      - songs-ms
+
+volumes:
+  db-data:
