@@ -1,0 +1,60 @@
+Name:             song-microservice-with-statefulset-deployment-56666679fb-cxbt6
+Namespace:        microservice-readiness-ns
+Priority:         0
+Service Account:  default
+Node:             k8s-desctop/192.168.127.2
+Start Time:       Tue, 28 Oct 2025 23:05:29 +0100
+Labels:           app=song-microservice-with-statefulset
+                  pod-template-hash=56666679fb
+Annotations:      <none>
+Status:           Running
+IP:               10.42.0.228
+IPs:
+  IP:           10.42.0.228
+Controlled By:  ReplicaSet/song-microservice-with-statefulset-deployment-56666679fb
+Containers:
+  song-microservice-with-statefulset:
+    Container ID:   docker://732e6d867211fd09b540d903ab23bd781500a2387338483a22c85c1e5c8d12d3
+    Image:          experimentalmicroservice-module-2-songs-ms:2.0
+    Image ID:       docker://sha256:d472321d978cb46fdda098f429814da6dc0984423a0865bfcd8ca8e0cb8f6ef0
+    Port:           8081/TCP
+    Host Port:      0/TCP
+    State:          Running
+      Started:      Tue, 28 Oct 2025 23:05:32 +0100
+    Ready:          True
+    Restart Count:  0
+    Liveness:       http-get http://:8081/actuator/health/liveness delay=25s timeout=1s period=10s #success=1 #failure=50
+    Readiness:      http-get http://:8081/actuator/health/readiness delay=25s timeout=1s period=10s #success=1 #failure=50
+    Startup:        http-get http://:8081/actuator/health delay=25s timeout=1s period=10s #success=1 #failure=50
+    Environment:
+      POSTGRES_USER:      <set to the key 'postgres-root-username' in secret 'postgres-db-statefulset-secret'>             Optional: false
+      POSTGRES_PASSWORD:  <set to the key 'postgres-root-password' in secret 'postgres-db-statefulset-secret'>             Optional: false
+      SONGS_DB_URL:       <set to the key 'song_database_url' of config map 'experimental-service-db-statefulset-config'>  Optional: false
+      POSTGRES_DB:        <set to the key 'database_name' of config map 'experimental-service-db-statefulset-config'>      Optional: false
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-q8dqg (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True
+  Initialized                 True
+  Ready                       True
+  ContainersReady             True
+  PodScheduled                True
+Volumes:
+  kube-api-access-q8dqg:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    ConfigMapOptional:       <nil>
+    DownwardAPI:             true
+QoS Class:                   BestEffort
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type     Reason     Age                From               Message
+  ----     ------     ----               ----               -------
+  Normal   Scheduled  23m                default-scheduler  Successfully assigned microservice-readiness-ns/song-microservice-with-statefulset-deployment-56666679fb-cxbt6 to k8s-desctop
+  Normal   Pulled     23m                kubelet            Container image "experimentalmicroservice-module-2-songs-ms:2.0" already present on machine
+  Normal   Created    23m                kubelet            Created container song-microservice-with-statefulset
+  Normal   Started    22m                kubelet            Started container song-microservice-with-statefulset

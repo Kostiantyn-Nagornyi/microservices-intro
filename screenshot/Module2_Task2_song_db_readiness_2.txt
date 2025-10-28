@@ -1,0 +1,71 @@
+Name:             experimental-resources-service-db-statefulset-0
+Namespace:        database-readiness-ns
+Priority:         0
+Service Account:  default
+Node:             k8s-desctop/192.168.127.2
+Start Time:       Tue, 28 Oct 2025 21:24:04 +0100
+Labels:           app=resource-postgres-db-statefulset
+                  apps.kubernetes.io/pod-index=0
+                  controller-revision-hash=experimental-resources-service-db-statefulset-7bf68f4684
+                  statefulset.kubernetes.io/pod-name=experimental-resources-service-db-statefulset-0
+Annotations:      <none>
+Status:           Running
+IP:               10.42.0.180
+IPs:
+  IP:           10.42.0.180
+Controlled By:  StatefulSet/experimental-resources-service-db-statefulset
+Containers:
+  resource-postgres-db-statefulset:
+    Container ID:   docker://8865e94909b006a9d3e3bc1c07075a9a187527e5f18333efe6755006bfbecae7
+    Image:          postgres:18.0
+    Image ID:       docker-pullable://postgres@sha256:1ffc019dae94eca6b09a49ca67d37398951346de3c3d0cfe23d8d4ca33da83fb
+    Port:           5432/TCP
+    Host Port:      0/TCP
+    State:          Running
+      Started:      Tue, 28 Oct 2025 21:24:07 +0100
+    Ready:          False
+    Restart Count:  0
+    Liveness:       exec [sh -c pg_isready -U $POSTGRES_USER -d $POSTGRES_DB] delay=30s timeout=1s period=20s #success=1 #failure=50
+    Readiness:      exec [sh -c pg_isready -U $POSTGRES_USER -d $POSTGRES_DB] delay=10s timeout=1s period=10s #success=1 #failure=50
+    Startup:        exec [sh -c pg_isready -U $POSTGRES_USER -d $POSTGRES_DB] delay=10s timeout=1s period=10s #success=1 #failure=50
+    Environment:
+      POSTGRES_USER:      <set to the key 'postgres-root-username' in secret 'postgres-db-statefulset-secret'>         Optional: false
+      POSTGRES_PASSWORD:  <set to the key 'postgres-root-password' in secret 'postgres-db-statefulset-secret'>         Optional: false
+      POSTGRES_DB:        <set to the key 'database_name' of config map 'experimental-service-db-statefulset-config'>  Optional: false
+    Mounts:
+      /docker-entrypoint-initdb.d from db-init-script (ro)
+      /var/lib/postgresql/18/docker from resource-postgres-storage (rw)
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-5jlzw (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True
+  Initialized                 True
+  Ready                       False
+  ContainersReady             False
+  PodScheduled                True
+Volumes:
+  resource-postgres-storage:
+    Type:       PersistentVolumeClaim (a reference to a PersistentVolumeClaim in the same namespace)
+    ClaimName:  resource-postgres-storage-experimental-resources-service-db-statefulset-0
+    ReadOnly:   false
+  db-init-script:
+    Type:      ConfigMap (a volume populated by a ConfigMap)
+    Name:      resource-db-init-script-config
+    Optional:  false
+  kube-api-access-5jlzw:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    ConfigMapOptional:       <nil>
+    DownwardAPI:             true
+QoS Class:                   BestEffort
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type    Reason     Age   From               Message
+  ----    ------     ----  ----               -------
+  Normal  Scheduled  16s   default-scheduler  Successfully assigned database-readiness-ns/experimental-resources-service-db-statefulset-0 to k8s-desctop
+  Normal  Pulled     13s   kubelet            Container image "postgres:18.0" already present on machine
+  Normal  Created    13s   kubelet            Created container resource-postgres-db-statefulset
+  Normal  Started    13s   kubelet            Started container resource-postgres-db-statefulset
