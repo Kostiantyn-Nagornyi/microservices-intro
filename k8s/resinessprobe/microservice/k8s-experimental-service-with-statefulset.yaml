@@ -107,21 +107,21 @@ spec:
           startupProbe:
             httpGet:
               path: /actuator/health
-              port: 8082
+              port: 8080
             initialDelaySeconds: 25
             periodSeconds: 30
             failureThreshold: 50
           livenessProbe:
             httpGet:
               path: /actuator/health/liveness
-              port: 8082
+              port: 8080
             initialDelaySeconds: 25
             periodSeconds: 10
             failureThreshold: 50
           readinessProbe:
             httpGet:
               path: /actuator/health/readiness
-              port: 8082
+              port: 8080
             initialDelaySeconds: 25
             periodSeconds: 10
             failureThreshold: 50
@@ -159,6 +159,6 @@ spec:
     app: resource-microservice-with-statefulset
   ports:
     - protocol: TCP
-      port: 8082
+      port: 8080
       targetPort: 8080
       nodePort: 30012
