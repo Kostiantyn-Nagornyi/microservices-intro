@@ -1,0 +1,40 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: experimental-service-db-statefulset-config
+  namespace: database-initscript-ns
+data:
+  database_name: postgres
+  song_database_url: song-postgres-db-statefulset-service
+  resource_database_url: resource-postgres-db-statefulset-service
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: song-db-init-script-config
+  namespace: database-initscript-ns
+data:
+  init.sql: |
+    CREATE TABLE songs (
+        id SERIAL PRIMARY KEY,
+        name VARCHAR(255),
+        artist VARCHAR(255),
+        album VARCHAR(255),
+        length VARCHAR(255),
+        resource_id INTEGER NOT NULL UNIQUE,
+        year VARCHAR(255)
+    );
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: resource-db-init-script-config
+  namespace: database-initscript-ns
+data:
+  init.sql: |
+    CREATE TABLE IF NOT EXISTS resources (
+        id SERIAL PRIMARY KEY,
+        blob BYTEA
+    );
