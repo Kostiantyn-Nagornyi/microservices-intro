@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: database-version-control-ns
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: microservice-version-control-ns

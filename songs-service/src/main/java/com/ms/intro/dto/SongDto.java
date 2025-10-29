@@ -18,6 +18,8 @@ public class SongDto {
 
     String artist;
 
+    String genre;
+
     String album;
 
     String length;

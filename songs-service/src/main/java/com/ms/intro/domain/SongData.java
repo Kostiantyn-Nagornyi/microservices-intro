@@ -28,6 +28,9 @@ public class SongData {
     String artist;
 
     @Column(nullable = true)
+    String genre;
+
+    @Column(nullable = true)
     String album;
 
     @Column(nullable = true)
