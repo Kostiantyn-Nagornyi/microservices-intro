@@ -1,5 +1,5 @@
 # K8s basics
-## Module 2: Deployment and Configuration in Kubernetes
+## Module 3: Helm overview
 
 ### Pre-requisites:
 #### 0. Install [Rancher Desktop](https://docs.rancherdesktop.io/).
