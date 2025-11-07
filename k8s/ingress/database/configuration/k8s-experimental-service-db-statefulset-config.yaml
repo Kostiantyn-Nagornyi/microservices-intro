@@ -1,0 +1,43 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: experimental-service-db-statefulset-config
+  namespace: database-version-control-ns
+data:
+  database_name: postgres
+  song_database_url: song-postgres-db-statefulset-service
+  resource_database_url: resource-postgres-db-statefulset-service
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: song-db-init-script-config
+  namespace: database-version-control-ns
+data:
+  init.sql: |
+    CREATE SEQUENCE song_seq START WITH 1 INCREMENT BY 50;
+    CREATE TABLE song (
+        id SERIAL PRIMARY KEY,
+        name VARCHAR(255),
+        artist VARCHAR(255),
+        genre VARCHAR(255),
+        album VARCHAR(255),
+        length VARCHAR(255),
+        resource_id INTEGER NOT NULL UNIQUE,
+        year VARCHAR(255)
+    );
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: resource-db-init-script-config
+  namespace: database-version-control-ns
+data:
+  init.sql: |
+    CREATE SEQUENCE resource_seq START WITH 1 INCREMENT BY 1;
+    CREATE TABLE IF NOT EXISTS resource (
+        id SERIAL PRIMARY KEY,
+        blob BYTEA
+    );
