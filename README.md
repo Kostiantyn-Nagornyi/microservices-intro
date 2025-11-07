@@ -33,7 +33,7 @@ This is crucial because kubernetes requires docker-images for all components, it
 that without **local image-registry** have to be pushed into the remote Docker Hub or another image-registry system, e.g. AWS ERC.
 
 ![Mudule2_Pre_requisit_1.jpg](screenshot/Mudule2_Pre_requisit_1.jpg)
-#### Small Title
+
 #### 4. **K8s module 2 tasks**
 ##### 4a. **Sub-task 1: Secrets and config-maps**
     - Add Secrets object to your k8s manifest to store database username and password.
