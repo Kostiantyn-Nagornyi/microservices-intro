@@ -1,0 +1,169 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: song-microservice-with-statefulset-deployment
+  namespace: microservice-version-control-ns
+  labels:
+    app: song-microservice-with-statefulset
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: song-microservice-with-statefulset
+  strategy:
+    type: RollingUpdate # ensures zero downtime by gradually replacing old pods with new ones
+    rollingUpdate:
+      maxUnavailable: 1 # how many pods (of 2) can be offline at once
+      maxSurge: 1 # how many extra pods (above 2) can be created
+  template:
+    metadata:
+      labels:
+        app: song-microservice-with-statefulset
+    spec:
+      containers:
+        - name: song-microservice-with-statefulset
+          image: experimentalmicroservice-module-2-songs-ms:2.1
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8081
+          startupProbe:
+            httpGet:
+              path: /actuator/health
+              port: 8081
+            initialDelaySeconds: 25
+            periodSeconds: 10
+            failureThreshold: 50
+          livenessProbe:
+            httpGet:
+              path: /actuator/health/liveness
+              port: 8081
+            initialDelaySeconds: 25
+            periodSeconds: 10
+            failureThreshold: 50
+          readinessProbe:
+            httpGet:
+              path: /actuator/health/readiness
+              port: 8081
+            initialDelaySeconds: 25
+            periodSeconds: 10
+            failureThreshold: 50
+          env:
+            - name: POSTGRES_USER
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-db-statefulset-secret
+                  key: postgres-root-username
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-db-statefulset-secret
+                  key: postgres-root-password
+            - name: SONGS_DB_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: experimental-service-db-statefulset-config
+                  key: song_database_url
+            - name: POSTGRES_DB
+              valueFrom:
+                configMapKeyRef:
+                  name: experimental-service-db-statefulset-config
+                  key: database_name
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: song-microservice-with-statefulset-service
+  namespace: microservice-version-control-ns
+spec:
+  type: NodePort
+  selector:
+    app: song-microservice-with-statefulset
+  ports:
+    - protocol: TCP
+      port: 8081
+      targetPort: 8081
+      nodePort: 30021
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: resource-microservice-with-statefulset-deployment
+  namespace: microservice-version-control-ns
+  labels:
+    app: resource-microservice-with-statefulset
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: resource-microservice-with-statefulset
+  template:
+    metadata:
+      labels:
+        app: resource-microservice-with-statefulset
+    spec:
+      containers:
+        - name: resource-microservice-with-statefulset
+          image: experimentalmicroservice-module-2-resources-ms:2.0
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8080
+          startupProbe:
+            httpGet:
+              path: /actuator/health
+              port: 8080
+            initialDelaySeconds: 25
+            periodSeconds: 30
+            failureThreshold: 50
+          livenessProbe:
+            httpGet:
+              path: /actuator/health/liveness
+              port: 8080
+            initialDelaySeconds: 25
+            periodSeconds: 10
+            failureThreshold: 50
+          readinessProbe:
+            httpGet:
+              path: /actuator/health/readiness
+              port: 8080
+            initialDelaySeconds: 25
+            periodSeconds: 10
+            failureThreshold: 50
+          env:
+            - name: POSTGRES_USER
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-db-statefulset-secret
+                  key: postgres-root-username
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-db-statefulset-secret
+                  key: postgres-root-password
+            - name: RESOURCES_DB_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: experimental-service-db-statefulset-config
+                  key: resource_database_url
+            - name: POSTGRES_DB
+              valueFrom:
+                configMapKeyRef:
+                  name: experimental-service-db-statefulset-config
+                  key: database_name
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: resource-microservice-with-statefulset-service
+  namespace: microservice-version-control-ns
+spec:
+  type: NodePort
+  selector:
+    app: resource-microservice-with-statefulset
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+      nodePort: 30022
