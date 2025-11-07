@@ -9,7 +9,7 @@ import org.hibernate.type.descriptor.jdbc.VarbinaryJdbcType;
 @AllArgsConstructor
 @Data
 @Entity
-@Table(name = "resources")
+@Table(name = "resource")
 public class ResourceDomain {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

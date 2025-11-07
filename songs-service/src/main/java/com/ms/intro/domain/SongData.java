@@ -1,16 +1,17 @@
 package com.ms.intro.domain;
 
-import com.ms.intro.dto.SongDto;
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-import java.util.Objects;
-
 @Entity
-@Table(name = "songs")
+@Table(name = "song")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -26,6 +27,9 @@ public class SongData {
 
     @Column(nullable = true)
     String artist;
+
+    @Column(nullable = true)
+    String genre;
 
     @Column(nullable = true)
     String album;
