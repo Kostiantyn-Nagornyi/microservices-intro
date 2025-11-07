@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: experimental-service-db-statefulset-config
+  namespace: microservice-helm-experimental-ns
+  labels:
+      {{- include "microservice-chart.labels" . | nindent 4 }}
+
+data:
+  database_name: postgres
+  song_database_url: song-postgres-db-statefulset-service.database-helm-experimental-ns
+  resource_database_url: resource-postgres-db-statefulset-service.database-helm-experimental-ns
