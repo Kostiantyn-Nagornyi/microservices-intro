@@ -1,0 +1,14 @@
+replicaCount: 2
+microservice:
+  namespace: microservice-helm-experimental-ns
+  serviceName:
+    song: song-microservice-with-statefulset-service
+    resource: resource-microservice-with-statefulset-service
+  podName:
+    song: song-microservice-with-statefulset-deployment
+    resource: resource-microservice-with-statefulset-deployment
+  labels:
+    song:
+      appName: song-microservice-helm
+    resource:
+      appName: resource-microservice-helm
