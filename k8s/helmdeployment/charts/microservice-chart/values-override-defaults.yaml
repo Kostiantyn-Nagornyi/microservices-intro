@@ -1,0 +1,8 @@
+replicaCount: 3
+microservice:
+  serviceName:
+    song: song-microservice-deployed-by-helm
+    resource: resource-microservice-deployed-by-helm
+  podName:
+    song: song-microservice-deployed-by-helm
+    resource: resource-microservice-deployed-by-helm
