@@ -3,7 +3,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: experimental-songs-service-db-headless-service
-  namespace: database-version-control-ns
+  namespace: database-ingress-ns
 spec:
   selector:
     app: song-postgres-db-statefulset
@@ -15,7 +15,7 @@ apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: experimental-songs-service-db-statefulset
-  namespace: database-version-control-ns
+  namespace: database-ingress-ns
   labels:
     app: song-postgres-db-statefulset
 spec:
@@ -106,7 +106,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: song-postgres-db-statefulset-service
-  namespace: database-version-control-ns
+  namespace: database-ingress-ns
 spec:
   selector:
     app: song-postgres-db-statefulset
@@ -121,7 +121,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: experimental-resource-service-db-headless-service
-  namespace: database-version-control-ns
+  namespace: database-ingress-ns
 spec:
   selector:
     app: resource-postgres-db-statefulset
@@ -133,7 +133,7 @@ apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: experimental-resources-service-db-statefulset
-  namespace: database-version-control-ns
+  namespace: database-ingress-ns
   labels:
     app: resource-postgres-db-statefulset
 spec:
@@ -224,7 +224,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: resource-postgres-db-statefulset-service
-  namespace: database-version-control-ns
+  namespace: database-ingress-ns
 spec:
   selector:
     app: resource-postgres-db-statefulset

@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: experimental-service-db-statefulset-config
-  namespace: database-version-control-ns
+  namespace: database-ingress-ns
 data:
   database_name: postgres
   song_database_url: song-postgres-db-statefulset-service
@@ -13,7 +13,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: song-db-init-script-config
-  namespace: database-version-control-ns
+  namespace: database-ingress-ns
 data:
   init.sql: |
     CREATE SEQUENCE song_seq START WITH 1 INCREMENT BY 50;
@@ -33,7 +33,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: resource-db-init-script-config
-  namespace: database-version-control-ns
+  namespace: database-ingress-ns
 data:
   init.sql: |
     CREATE SEQUENCE resource_seq START WITH 1 INCREMENT BY 1;
