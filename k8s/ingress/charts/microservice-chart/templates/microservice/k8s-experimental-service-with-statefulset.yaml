@@ -83,7 +83,7 @@ spec:
     - protocol: TCP
       port: 8081
       targetPort: 8081
-      nodePort: 30021
+      nodePort: 30041
 
 ---
 apiVersion: apps/v1
@@ -166,4 +166,4 @@ spec:
     - protocol: TCP
       port: 8080
       targetPort: 8080
-      nodePort: 30022
+      nodePort: 30042
