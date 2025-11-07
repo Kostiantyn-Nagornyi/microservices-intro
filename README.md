@@ -34,7 +34,7 @@ that without **local image-registry** have to be pushed into the remote Docker H
 
 ![Mudule3_Pre_requisit_1.jpg](screenshot/Mudule3_Pre_requisit_1.jpg)
 
-#### 4. **K8s module 2 tasks**
+#### 4. **K8s module 3 tasks**
 ##### 4a. **Sub-task 1: Helm chart default variables**
     - Install helm Official download link.
     - Add helm chart to deploy your applications. Make replica-count and namespace a helm values.
