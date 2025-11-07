@@ -58,7 +58,7 @@ aka values, resides in the **./k8s/helmdeployment/charts** folder, where:
 
 Helm deployment commands and respective figures with deployment results are given below.
 
-1. Initial helm-chart deployment, the **REVISION 1**, of already existent microservice configuration without templating, see Fig. 1.
+1. Initial helm-chart deployment, the **REVISION 1**, of already existent microservice configuration without templating.
 
 *!NB: Here and below it is not strictly needed to include "--namespace microservice-helm-experimental-ns" part
 to the command, because it is set up in the configuration itself. Here it is included for 
