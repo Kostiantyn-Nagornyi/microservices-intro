@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: song-microservice-with-statefulset-deployment
-  namespace: microservice-version-control-ns
+  namespace: microservice-ingress-ns
   labels:
     app: song-microservice-with-statefulset
 spec:
@@ -74,7 +74,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: song-microservice-with-statefulset-service
-  namespace: microservice-version-control-ns
+  namespace: microservice-ingress-ns
 spec:
   type: NodePort
   selector:
@@ -90,7 +90,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: resource-microservice-with-statefulset-deployment
-  namespace: microservice-version-control-ns
+  namespace: microservice-ingress-ns
   labels:
     app: resource-microservice-with-statefulset
 spec:
@@ -157,7 +157,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: resource-microservice-with-statefulset-service
-  namespace: microservice-version-control-ns
+  namespace: microservice-ingress-ns
 spec:
   type: NodePort
   selector:
