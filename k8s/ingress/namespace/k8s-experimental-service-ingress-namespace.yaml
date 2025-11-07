@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: database-ingress-ns
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: microservice-ingress-ns
