@@ -1,7 +1,6 @@
 package com.ms.intro.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import jakarta.persistence.Column;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,6 +16,8 @@ public class SongDto {
     String name;
 
     String artist;
+
+    String genre;
 
     String album;
 
