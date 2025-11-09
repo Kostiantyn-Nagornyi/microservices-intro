@@ -76,15 +76,12 @@ metadata:
   name: song-microservice-with-statefulset-service
   namespace: microservice-ingress-ns
 spec:
-  type: NodePort
   selector:
     app: song-microservice-with-statefulset
   ports:
     - protocol: TCP
       port: 8081
       targetPort: 8081
-      nodePort: 30041
-
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -159,11 +156,9 @@ metadata:
   name: resource-microservice-with-statefulset-service
   namespace: microservice-ingress-ns
 spec:
-  type: NodePort
   selector:
     app: resource-microservice-with-statefulset
   ports:
     - protocol: TCP
       port: 8080
       targetPort: 8080
-      nodePort: 30042
