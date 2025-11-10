@@ -25,3 +25,4 @@ microservice:
 ingress:
   name: microservice-ingress
   class: nginx
+
