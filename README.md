@@ -111,8 +111,9 @@ See [rewrite-target](https://github.com/kubernetes/ingress-nginx/tree/main/docs/
 ```
 kind: Ingress
 metadata:
-  name: {{ .Values.ingress.name }}
-  namespace: {{ .Values.namespace }}
+
+...
+
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /$2
     nginx.ingress.kubernetes.io/use-regex: "true"
