@@ -103,7 +103,7 @@ Service alterations for **song** and **resource** microservices are configured i
 and [k8s-audio-resource-microservice-deployment.yaml](k8s/ingress/charts/microservice-chart/templates/microservice/audioresorce/k8s-audio-resource-microservice-deployment.yaml) 
 respectively.
 
-3. In order open outer access to cluster and request routing a respective microservice, an [ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/)
+3. In order open outer access to cluster and request routing to a respective microservice, an [ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/)
 resource and traffic routing was configured, please refer to [ingress.yaml](k8s/ingress/charts/microservice-chart/templates/microservice/ingress/ingress.yaml).
 
 4. The uri rewrite is achieved with ``rewrite-targe`` and ``use-regex`` annotations of the [ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/).\
