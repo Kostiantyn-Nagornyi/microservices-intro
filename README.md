@@ -98,7 +98,7 @@ And deployed **IngressClass** ``nginx``.
 
 2. Both microservices and ingress are implemented as a helm-chart.\
 Each microservice is implemented as a separate very basic helm-template that use default [values](k8s/ingress/charts/microservice-chart/values.yaml).\
-Service alterations for **song** **resource** microservices are configured in 
+Service alterations for **song** and **resource** microservices are configured in 
 [k8s-song-microservice-deployment.yaml](k8s/ingress/charts/microservice-chart/templates/microservice/song/k8s-song-microservice-deployment.yaml)
 and [k8s-audio-resource-microservice-deployment.yaml](k8s/ingress/charts/microservice-chart/templates/microservice/audioresorce/k8s-audio-resource-microservice-deployment.yaml) 
 respectively.
