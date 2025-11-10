@@ -1,1 +1,27 @@
-replicaCount: 2
+replicaQuantity: 2
+
+namespace: microservice-ingress-ns
+
+microservice:
+  healthMonitoring:
+    healthProbe: /actuator/health
+    livelinessProbe: /actuator/health/liveness
+    readinessProbe: /actuator/health/readiness
+  song:
+    name: song-microservice-with-statefulset-deployment
+    image:
+      name: experimentalmicroservice-module-2-songs-ms
+      version: "2.1"
+    network:
+      k8sServiceName: song-microservice-with-statefulset-service
+  resource:
+    name: resource-microservice-with-statefulset-deployment
+    image:
+      name: experimentalmicroservice-module-2-resources-ms
+      version: "2.0"
+    network:
+      k8sServiceName: resource-microservice-with-statefulset-service
+
+ingress:
+  name: microservice-ingress
+  class: nginx

@@ -1,0 +1,11 @@
+In this folder the original "song" and "resource" microservices deployment resides:
+k8s-experimental-service-with-statefulset.yaml
+This microservice deployment-file is obtained from previous k8s-exercises that preceded this helm-based exercise.
+
+Base on it helm-templates were elaborated for "song" and audio-"resource" microservices,
+which now resides in separate directories:
+- the song microservice template - charts/templates/microservice/song
+- the audio-resource microservice (former resource microservice) template = charts/templates/microservice/audioresource
+
+Hence, this original deployment could be used to fix potential miss-configuration bugs in templates
+and to perform viable microservice deployment in a cluster for deployment completeness microservice + database.

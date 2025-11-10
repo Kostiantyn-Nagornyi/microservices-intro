@@ -1,0 +1,83 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.microservice.resource.name }}
+  namespace: {{ .Values.namespace }}
+  labels:
+    app: resource-microservice-with-statefulset
+spec:
+  replicas: {{ .Values.replicaQuantity }}
+  selector:
+    matchLabels:
+      app: resource-microservice-with-statefulset
+  template:
+    metadata:
+      labels:
+        app: resource-microservice-with-statefulset
+    spec:
+      containers:
+        - name: resource-microservice-with-statefulset
+          image: {{
+            printf "%s:%s"
+              .Values.microservice.resource.image.name
+              .Values.microservice.resource.image.version
+          }} # refer to https://helm.sh/docs/chart_template_guide/function_list#printf
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8080
+          startupProbe:
+            httpGet:
+              path: {{ .Values.microservice.healthMonitoring.healthProbe }}
+              port: 8080
+            initialDelaySeconds: 25
+            periodSeconds: 30
+            failureThreshold: 50
+          livenessProbe:
+            httpGet:
+              path: {{ .Values.microservice.healthMonitoring.livelinessProbe }}
+              port: 8080
+            initialDelaySeconds: 25
+            periodSeconds: 10
+            failureThreshold: 50
+          readinessProbe:
+            httpGet:
+              path: {{ .Values.microservice.healthMonitoring.readinessProbe }}
+              port: 8080
+            initialDelaySeconds: 25
+            periodSeconds: 10
+            failureThreshold: 50
+          env:
+            - name: POSTGRES_USER
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-db-statefulset-secret
+                  key: postgres-root-username
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-db-statefulset-secret
+                  key: postgres-root-password
+            - name: RESOURCES_DB_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: experimental-service-db-statefulset-config
+                  key: resource_database_url
+            - name: POSTGRES_DB
+              valueFrom:
+                configMapKeyRef:
+                  name: experimental-service-db-statefulset-config
+                  key: database_name
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.microservice.resource.network.k8sServiceName }}
+  namespace: {{ .Values.namespace }}
+spec:
+  selector:
+    app: resource-microservice-with-statefulset
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080

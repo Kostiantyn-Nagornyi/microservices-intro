@@ -1,13 +1,13 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: microservice-ingress
-  namespace: microservice-ingress-ns
+  name: {{ .Values.ingress.name }}
+  namespace: {{ .Values.namespace }}
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /$2
     nginx.ingress.kubernetes.io/use-regex: "true"
 spec:
-  ingressClassName: nginx
+  ingressClassName: {{ .Values.ingress.class }}
   rules:
     - host: localhost
       http:
@@ -16,13 +16,13 @@ spec:
             pathType: ImplementationSpecific
             backend:
               service:
-                name: song-microservice-with-statefulset-service
+                name: {{ .Values.microservice.song.network.k8sServiceName }}
                 port:
                   number: 8081
           - path: /resource/api/v1(/|$)(.*)
             pathType: ImplementationSpecific
             backend:
               service:
-                name: resource-microservice-with-statefulset-service
+                name: {{ .Values.microservice.resource.network.k8sServiceName }}
                 port:
                   number: 8080

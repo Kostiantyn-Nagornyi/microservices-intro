@@ -1,0 +1,88 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.microservice.song.name }}
+  namespace: {{ .Values.namespace }}
+  labels:
+    app: song-microservice-with-statefulset
+spec:
+  replicas: {{ .Values.replicaQuantity }}
+  selector:
+    matchLabels:
+      app: song-microservice-with-statefulset
+  strategy:
+    type: RollingUpdate # ensures zero downtime by gradually replacing old pods with new ones
+    rollingUpdate:
+      maxUnavailable: 1 # how many pods (of 2) can be offline at once
+      maxSurge: 1 # how many extra pods (above 2) can be created
+  template:
+    metadata:
+      labels:
+        app: song-microservice-with-statefulset
+    spec:
+      containers:
+        - name: song-microservice-with-statefulset
+          image: {{
+            printf "%s:%s"
+              .Values.microservice.song.image.name
+              .Values.microservice.song.image.version
+          }} # refer to https://helm.sh/docs/chart_template_guide/function_list#printf
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8081
+          startupProbe:
+            httpGet:
+              path: {{ .Values.microservice.healthMonitoring.healthProbe }}
+              port: 8081
+            initialDelaySeconds: 25
+            periodSeconds: 10
+            failureThreshold: 50
+          livenessProbe:
+            httpGet:
+              path: {{ .Values.microservice.healthMonitoring.livelinessProbe }}
+              port: 8081
+            initialDelaySeconds: 25
+            periodSeconds: 10
+            failureThreshold: 50
+          readinessProbe:
+            httpGet:
+              path: {{ .Values.microservice.healthMonitoring.readinessProbe }}
+              port: 8081
+            initialDelaySeconds: 25
+            periodSeconds: 10
+            failureThreshold: 50
+          env:
+            - name: POSTGRES_USER
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-db-statefulset-secret
+                  key: postgres-root-username
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-db-statefulset-secret
+                  key: postgres-root-password
+            - name: SONGS_DB_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: experimental-service-db-statefulset-config
+                  key: song_database_url
+            - name: POSTGRES_DB
+              valueFrom:
+                configMapKeyRef:
+                  name: experimental-service-db-statefulset-config
+                  key: database_name
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.microservice.song.network.k8sServiceName }}
+  namespace: {{ .Values.namespace }}
+spec:
+  selector:
+    app: song-microservice-with-statefulset
+  ports:
+    - protocol: TCP
+      port: 8081
+      targetPort: 8081
