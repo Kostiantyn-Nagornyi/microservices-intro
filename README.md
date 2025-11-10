@@ -155,6 +155,4 @@ Actually the results of **ingress** ``target-rewrite``
 
 ![Fig9_2_successfull_response_resource_selection_resource_microservice.jpg](screenshot/Fig9_2_successfull_response_resource_selection_resource_microservice.jpg)
 
-#### WORK IN PROGRESS...
-
 #### At this point, Module 4 could be considered as resolved.
