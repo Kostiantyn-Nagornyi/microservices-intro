@@ -122,7 +122,17 @@ metadata:
           - path: /song/api/v1(/|$)(.*) 
 ```
 
+```
+helm install microservice-ingress-release microservice-chart/ --values microservice-chart/values.yaml --namespace microservice-ingress-ns
+
+helm upgrade microservice-ingress-release microservice-chart/ --values microservice-chart/values.yaml --namespace microservice-ingress-ns
+```
+
 ![Fig5_helm_update_release_with_ingress.jpg](screenshot/Fig5_helm_update_release_with_ingress.jpg)
+
+```
+helm history microservice-ingress-release --namespace microservice-ingress-ns
+```
 
 ![Fig6_helm_history_2_releases.jpg](screenshot/Fig6_helm_history_2_releases.jpg)
 
