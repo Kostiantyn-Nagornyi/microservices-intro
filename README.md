@@ -2,8 +2,8 @@
 ## Module 4: Network and Ingress in Kubernetes
 
 ### Pre-requisites:
-#### 0. Install [Rancher Desktop](https://docs.rancherdesktop.io/).
-#### 1. Build executable jar-files for all projects (gradle-modules):
+#### 1. Install [Rancher Desktop](https://docs.rancherdesktop.io/).
+#### 2. Build executable jar-files for all projects (gradle-modules):
 - **eureka** - this service will not be needed for K8s experiments;
 - **songs-service**;
 - **resource-service**;
